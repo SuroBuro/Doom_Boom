@@ -1,0 +1,281 @@
+[gd_scene load_steps=25 format=3 uid="uid://com035jf14m2h"]
+
+[ext_resource type="Script" path="res://Scenes/player.gd" id="1_ew1dk"]
+[ext_resource type="Texture2D" uid="uid://bpvjmyqpdktyu" path="res://Sprites/Sgun.png" id="1_q70xp"]
+[ext_resource type="AudioStream" uid="uid://cieynlji2e8xo" path="res://Sounds/shotgun.wav" id="3_wnwsw"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nupaq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcoru"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(114, 0, 112, 134)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u7c6y"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(232, 0, 114, 139)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huhni"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(366, 0, 122, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_djksu"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 140, 122, 140)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_20fa3"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(159, 140, 135, 138)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i26c0"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(316, 139, 153, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_45g8w"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 278, 172, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igl5k"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(172, 278, 172, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_33ee3"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(344, 278, 172, 133)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_phqae"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 418, 148, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d6iq8"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(148, 418, 148, 166)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_n28ka"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(356, 460, 178, 115)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v515w"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 590, 178, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r5ox4"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(178, 590, 178, 118)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6vjib"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 0, 102, 127)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h3dcv"]
+atlas = ExtResource("1_q70xp")
+region = Rect2(0, 0, 111, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i52ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcoru")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u7c6y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huhni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_djksu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_20fa3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i26c0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_45g8w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igl5k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_33ee3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_phqae")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_d6iq8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_n28ka")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v515w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r5ox4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6vjib")
+}],
+"loop": false,
+"name": &"Shoot",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h3dcv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_40xjd"]
+resource_name = "Gun Bob"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/GunBase/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.233333, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(164, -103), Vector2(101, -109), Vector2(156, -109)]
+}
+
+[sub_resource type="Animation" id="Animation_t4w03"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer/GunBase/AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(164, -103)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ejqdc"]
+_data = {
+"Gun Bob": SubResource("Animation_40xjd"),
+"RESET": SubResource("Animation_t4w03")
+}
+
+[node name="Player" type="CharacterBody3D"]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_ew1dk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_nupaq")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+target_position = Vector3(0, 0, -1000)
+collision_mask = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GunBase" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -18.0
+offset_top = -19.0
+offset_right = 22.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
+position = Vector2(164, -103)
+scale = Vector2(2.34072, 2.34072)
+sprite_frames = SubResource("SpriteFrames_i52ve")
+animation = &"Shoot"
+autoplay = "idle"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GunBase"]
+root_node = NodePath("../../..")
+libraries = {
+"": SubResource("AnimationLibrary_ejqdc")
+}
+
+[node name="CrossHair" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -5.0
+offset_top = -5.0
+offset_right = 5.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.15, 0.15, 0.15, 0.219608)
+
+[node name="DeathScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/DeathScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -26.0
+offset_right = 36.0
+offset_bottom = -3.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You died!
+"
+
+[node name="Button" type="Button" parent="CanvasLayer/DeathScreen/Panel"]
+layout_mode = 0
+offset_left = -12.0
+offset_top = 33.0
+offset_right = 53.0
+offset_bottom = 64.0
+text = "Restart
+"
+
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wnwsw")
+bus = &"Sfx"

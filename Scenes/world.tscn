@@ -1,0 +1,165 @@
+[gd_scene load_steps=17 format=3 uid="uid://dm8gib8aic3mo"]
+
+[ext_resource type="Shader" path="res://Scenes/world.gdshader" id="1_i16qh"]
+[ext_resource type="PackedScene" uid="uid://com035jf14m2h" path="res://Scenes/Player.tscn" id="1_iachg"]
+[ext_resource type="Texture2D" uid="uid://c7euevlu8cjor" path="res://icon.svg" id="2_k25n0"]
+[ext_resource type="PackedScene" uid="uid://dohv2w88d0h8" path="res://Scenes/Necromancer.tscn" id="3_l5i4f"]
+[ext_resource type="PackedScene" uid="uid://cj2mfp7oj3tbt" path="res://Scenes/night_borne.tscn" id="3_nooyx"]
+[ext_resource type="AudioStream" uid="uid://k25f0fexoe8v" path="res://Sounds/Zander Noriega - Fight Them Until We Cant.wav" id="4_u3b3u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lt53b"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 340)
+shader_parameter/albedo = ExtResource("2_k25n0")
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ybycf"]
+size = Vector2(20, 20)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0e8in"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = true
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 340)
+shader_parameter/albedo = ExtResource("2_k25n0")
+
+[sub_resource type="BoxMesh" id="BoxMesh_qnpa3"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_28qsq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y27pa"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 340)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xqmbp"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 340)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q13ip"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.9
+shader_parameter/resolution = Vector2i(320, 340)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mtrp7"]
+render_priority = 0
+shader = ExtResource("1_i16qh")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.9
+shader_parameter/resolution = Vector2i(320, 340)
+
+[sub_resource type="Environment" id="Environment_61urj"]
+background_mode = 1
+background_color = Color(0.56416, 0.56416, 0.56416, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="Environment" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.10857, 0.0434306, 0.0973697)
+material_override = SubResource("ShaderMaterial_lt53b")
+mesh = SubResource("PlaneMesh_ybycf")
+
+[node name="Block" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.255, 0, 0, 0, 1.67, 0, 0, 0, 0.24, -0.857789, 0.776869, -2.40822)
+material_override = SubResource("ShaderMaterial_0e8in")
+mesh = SubResource("BoxMesh_qnpa3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Block"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Block/StaticBody3D"]
+shape = SubResource("BoxShape3D_28qsq")
+
+[node name="Block2" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.255, 0, 0, 0, 1.67, 0, 0, 0, 0.24, -3.02505, 0.816947, -1.28937)
+material_override = SubResource("ShaderMaterial_y27pa")
+mesh = SubResource("BoxMesh_qnpa3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Block2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Block2/StaticBody3D"]
+shape = SubResource("BoxShape3D_28qsq")
+
+[node name="Block3" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.255, 0, 0, 0, 1.67, 0, 0, 0, 0.24, 1.63269, 0.722775, -2.90878)
+material_override = SubResource("ShaderMaterial_xqmbp")
+mesh = SubResource("BoxMesh_qnpa3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Block3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Block3/StaticBody3D"]
+shape = SubResource("BoxShape3D_28qsq")
+
+[node name="Block4" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.255, 0, 0, 0, 1.67, 0, 0, 0, 0.24, 2.52605, 0.857263, 2.8767)
+material_override = SubResource("ShaderMaterial_q13ip")
+mesh = SubResource("BoxMesh_qnpa3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Block4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Block4/StaticBody3D"]
+shape = SubResource("BoxShape3D_28qsq")
+
+[node name="Block5" type="MeshInstance3D" parent="Environment"]
+transform = Transform3D(0.255, 0, 0, 0, 1.67, 0, 0, 0, 0.24, -2.64584, 0.898604, 3.25914)
+material_override = SubResource("ShaderMaterial_mtrp7")
+mesh = SubResource("BoxMesh_qnpa3")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Environment/Block5"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Environment/Block5/StaticBody3D"]
+shape = SubResource("BoxShape3D_28qsq")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_61urj")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(0.929487, 0.245075, -0.275666, 1.29924e-08, 0.747358, 0.664422, 0.368855, -0.617572, 0.694659, -0.955007, 0.753751, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("1_iachg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.013277, 0)
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_u3b3u")
+volume_db = -15.0
+autoplay = true
+
+[node name="Enemies" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37003, 1.10387, 4.17807)
+
+[node name="NightBorne" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.51395, -0.260796, -4.17807)
+
+[node name="Necromancer" parent="Enemies" instance=ExtResource("3_l5i4f")]
+
+[node name="Necromancer2" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.0732, 0, 0)
+
+[node name="Necromancer3" parent="Enemies" instance=ExtResource("3_l5i4f")]
+
+[node name="Necromancer4" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.59793)
+
+[node name="Necromancer5" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08048, 0, -7.95826)
+
+[node name="Necromancer6" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.66893, 0, -3.29189)
