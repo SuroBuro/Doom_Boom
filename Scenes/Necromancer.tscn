@@ -1,8 +1,9 @@
-[gd_scene load_steps=40 format=3 uid="uid://dohv2w88d0h8"]
+[gd_scene load_steps=41 format=3 uid="uid://dohv2w88d0h8"]
 
 [ext_resource type="Texture2D" uid="uid://b7q445v20gabw" path="res://Sprites/Necromancer_creativekind-Sheet.png" id="1_dc6ii"]
 [ext_resource type="Script" path="res://Scenes/necromancer.gd" id="1_gyypc"]
 [ext_resource type="AudioStream" uid="uid://cdy7jv00wddgn" path="res://Sounds/monster-death.wav" id="3_obtyf"]
+[ext_resource type="Script" path="res://Scenes/state_machine.gd" id="4_tju4i"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_enn88"]
 
@@ -297,5 +298,8 @@ bus = &"Sfx"
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 target_desired_distance = 6.0
 path_height_offset = -0.5
+
+[node name="StateMachine" type="Node3D" parent="."]
+script = ExtResource("4_tju4i")
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]

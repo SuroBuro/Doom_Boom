@@ -13,6 +13,7 @@ extends CharacterBody3D
 
 @onready var player:CharacterBody3D = get_tree().get_first_node_in_group("player")
 var dead:bool = false
+var in_range:bool = false
 
 
 func ready():
@@ -27,6 +28,8 @@ func actor_setup():
 	await get_tree().physics_frame
 	
 	set_movement_target(player.position)
+	var distance = player.position - global_position
+	try_to_kill(distance)
 	
 func set_movement_target(movement_target:Vector3):
 	navigation_agent_3d.set_target_position(movement_target)
@@ -36,25 +39,25 @@ func _physics_process(_delta):
 	
 	if dead:
 		return
-	#if player == null:
-		#return
 		
 	if navigation_agent_3d.is_navigation_finished():
-		print("why?")
 		return
 	var current_position:Vector3 = global_position
 	var next_path_position:Vector3 = navigation_agent_3d.get_next_path_position()
 	
-	velocity = current_position.direction_to(next_path_position) * speed
-	print(next_path_position)
-		
+	if !in_range:
+		velocity = current_position.direction_to(next_path_position) * speed
 
 	move_and_slide()
-	#try_to_kill()
 	
 func update_target_location(target):
 	navigation_agent_3d.target_position = target
 	
+func try_to_kill(distance):
+	if distance >  attack_range:
+		in_range = false
+	else:
+		in_range = true
 	#
 #func try_to_kill():
 	#var dist_to_player = global_position.distance_to(player.global_position)

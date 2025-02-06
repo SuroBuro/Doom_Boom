@@ -371,6 +371,7 @@ stream = ExtResource("5_48rby")
 
 [node name="OmniLight3D" type="OmniLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160477, 1.16612, -1.50902)
-light_color = Color(0.946, 1, 0.19, 1)
+visible = false
+light_color = Color(0.945098, 0.623529, 0.188235, 1)
 shadow_enabled = true
 omni_range = 11.1035

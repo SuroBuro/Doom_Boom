@@ -1,19 +1,30 @@
-[gd_scene load_steps=18 format=3 uid="uid://dm8gib8aic3mo"]
+[gd_scene load_steps=19 format=3 uid="uid://dm8gib8aic3mo"]
 
 [ext_resource type="PackedScene" uid="uid://com035jf14m2h" path="res://Scenes/Player.tscn" id="1_iachg"]
-[ext_resource type="Script" path="res://Scenes/world.gd" id="1_vvjr0"]
 [ext_resource type="Texture2D" uid="uid://gfnbio88ta04" path="res://Textures/bunker_floor.png" id="1_wxbrg"]
 [ext_resource type="Material" uid="uid://c6ndyx6vihjqq" path="res://Scenes/wall.tres" id="2_pf73d"]
 [ext_resource type="PackedScene" uid="uid://dohv2w88d0h8" path="res://Scenes/Necromancer.tscn" id="3_l5i4f"]
 [ext_resource type="PackedScene" uid="uid://cj2mfp7oj3tbt" path="res://Scenes/night_borne.tscn" id="3_nooyx"]
 [ext_resource type="Texture2D" uid="uid://chjpv5bpsxqi6" path="res://Textures/bunker_wall.png" id="4_ki3ak"]
 [ext_resource type="AudioStream" uid="uid://k25f0fexoe8v" path="res://Sounds/Zander Noriega - Fight Them Until We Cant.wav" id="4_u3b3u"]
+[ext_resource type="PackedScene" uid="uid://dmiidmef7j237" path="res://Scenes/Light.tscn" id="8_xilnj"]
+
+[sub_resource type="GDScript" id="GDScript_on0jt"]
+script/source = "extends Node3D
+
+@onready var player = $Player
+
+func _physics_process(_delta: float):
+	get_tree().call_group(\"Enemies\" ,\"update_target_location\" ,player.global_position )
+	pass
+"
 
 [sub_resource type="Environment" id="Environment_61urj"]
 background_mode = 1
 background_color = Color(0.229593, 0.229593, 0.229593, 1)
 volumetric_fog_enabled = true
-volumetric_fog_albedo = Color(1, 0.788167, 0.59, 1)
+volumetric_fog_density = 0.15
+volumetric_fog_albedo = Color(0.599346, 0.265257, 0.0533502, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_46a5p"]
 vertices = PackedVector3Array(-30.3272, 0.506978, -21.968, -30.5772, 0.506978, -25.468, -31.8272, 0.506978, -25.468, -31.0772, 0.506978, -21.218, -31.8272, 0.506978, -29.718, -42.8272, 0.506978, -29.718, -31.8272, 0.506978, -18.718, -42.8272, 0.506978, -16.718, -31.8272, 0.506978, -16.718, -29.5772, 0.506978, -26.718, -30.3272, 0.506978, -26.468, -29.5772, 0.506978, -21.718, -20.5772, 0.506978, -11.218, -20.3272, 0.506978, -10.718, -16.8272, 0.506978, -11.218, -16.5772, 0.506978, -12.718, -21.5772, 0.506978, -11.218, -15.8272, 0.506978, -13.468, -2.0772, 0.506978, -18.718, -2.0772, 0.506978, -29.718, -29.5772, 0.506978, -29.718, -29.5772, 0.506978, -7.96803, 0.422802, 0.506978, -17.718, 3.9228, 0.506978, -19.468, 3.4228, 0.506978, -19.718, -0.827198, 0.506978, -18.718, 3.6728, 0.506978, -20.968, 12.1728, 0.506978, -24.218, 9.9228, 0.506978, -29.718, 42.1728, 0.506978, 1.78197, 42.4228, 0.506978, 2.53197, 42.6728, 0.506978, 2.53197, 42.6728, 0.506978, -29.718, 21.1728, 0.506978, -7.96803, 22.1728, 0.506978, -6.46803, 23.1728, 0.506978, -6.21803, 21.1728, 0.506978, -10.718, 26.6728, 0.506978, 2.03197, 12.6728, 0.506978, -29.718, 12.9228, 3.00698, -23.468, 14.1728, 3.00698, -22.968, 13.6728, 3.00698, -24.718, 19.9228, 0.506978, -7.46803, 21.1728, 0.506978, -5.21803, 13.4228, 0.506978, -21.968, 5.6728, 0.506978, -18.968, -0.577198, 0.506978, -16.468, 19.4228, 0.506978, -7.96803, 21.1728, 0.506978, -3.96803, 16.9228, 0.506978, 2.03197, 17.1728, 0.506978, 2.78197, 20.4228, 0.506978, 2.78197, 20.6728, 0.506978, 2.03197, -15.3272, 0.506978, -10.718, -16.5772, 0.506978, 2.53197, -16.3272, 0.506978, -10.718, 23.9228, 0.506978, 2.03197, -37.3272, 0.506978, -4.71803, -37.0772, 0.506978, -3.71803, -36.0772, 0.506978, -3.71803, -35.3272, 0.506978, -5.71803, -42.8272, 0.506978, -2.71803, -38.0772, 0.506978, -4.71803, -31.8272, 0.506978, -6.96803, -20.8272, 0.506978, -8.71803, -21.8272, 0.506978, -8.21803, -20.5772, 0.506978, 2.53197, -23.8272, 0.506978, 3.78197, -21.0772, 0.506978, 3.53197, -21.0772, 0.506978, 2.78197, -24.3272, 0.506978, 2.53197, -29.5772, 0.506978, -5.46803, -29.5772, 0.506978, 2.78197, -35.8272, 0.506978, -3.21803, -37.8272, 0.506978, -1.96803, -31.8272, 0.506978, 8.78197, -42.8272, 0.506978, -0.218025, -40.0772, 0.506978, 18.282, -41.5772, 0.506978, 21.282, -40.3272, 0.506978, 22.032, -39.5772, 0.506978, 19.282, -40.0772, 0.506978, 19.032, -31.8272, 0.506978, -4.46803, -34.5772, 0.506978, -3.21803, -42.8272, 0.506978, 21.532, 26.6728, 3.00698, 3.28197, 27.9228, 3.00698, 3.28197, 25.9228, 3.00698, 3.03197, 24.9228, 3.00698, 3.03197, 10.1728, 3.00698, 3.03197, 25.6728, 3.00698, 3.28197, 26.1728, 3.00698, 4.53197, 25.4228, 3.00698, 1.53197, 41.6728, 0.506978, 4.03197, 42.6728, 0.506978, 29.032, 30.4228, 0.506978, 11.032, 29.6728, 0.506978, 11.282, 29.9228, 0.506978, 13.282, 32.1728, 0.506978, 14.032, 38.6728, 0.506978, 29.032, 30.4228, 0.506978, 10.032, 27.6728, 0.506978, 4.28197, 29.4228, 0.506978, 13.532, 27.6728, 0.506978, 10.532, -0.327198, 0.506978, 20.282, -1.3272, 0.506978, 20.782, -1.0772, 0.506978, 23.532, 0.172802, 0.506978, 23.782, 25.1728, 0.506978, 4.28197, 20.9228, 0.506978, 4.28197, -0.327198, 0.506978, 18.782, 0.922802, 0.506978, 29.032, 35.9228, 0.506978, 29.032, 29.4228, 0.506978, 14.532, 16.6728, 0.506978, 4.28197, -2.3272, 0.506978, 4.53197, -3.8272, 3.00698, 3.53197, -3.5772, 3.00698, 5.03197, -3.0772, 3.00698, 3.53197, -7.8272, 3.00698, 3.28197, 9.9228, 3.00698, 3.53197, -18.3272, 0.506978, 19.032, -18.8272, 0.506978, 19.282, -17.5772, 0.506978, 20.282, -17.3272, 0.506978, 19.782, -2.0772, 0.506978, 24.032, -2.3272, 0.506978, 20.782, -2.8272, 0.506978, 19.532, -18.3272, 0.506978, 18.282, -15.8272, 0.506978, 20.282, -19.5772, 0.506978, 17.032, -4.5772, 0.506978, 4.53197, -20.3272, 0.506978, 4.78197, -24.0772, 0.506978, 4.78197, -6.0772, 0.506978, 29.032, -1.5772, 0.506978, 29.032, -29.5772, 0.506978, 5.03197, -29.5772, 0.506978, 8.78197, -31.5772, 3.00698, 10.282, -30.0772, 3.00698, 9.78197, -30.8272, 3.00698, 9.03197, -31.5772, 3.00698, 9.78197, -32.8272, 3.00698, 11.282, -32.8272, 3.00698, 11.782, -32.0772, 3.00698, 11.282, -32.3272, 3.00698, 10.782, -17.5772, 0.506978, 22.282, -21.0772, 0.506978, 19.282, -40.3272, 0.506978, 22.782, -37.5772, 0.506978, 19.282, -29.0772, 0.506978, 12.032, -30.8272, 0.506978, 11.032, -42.8272, 0.506978, 29.032, -9.8272, 0.506978, 29.032, -42.8272, 0.506978, 25.532, -34.0772, 3.00698, 12.782, -34.0772, 3.00698, 13.282, -33.3272, 3.00698, 12.782, -33.5772, 3.00698, 12.282, -35.3272, 3.00698, 14.282, -35.3272, 3.00698, 14.782, -34.5772, 3.00698, 14.282, -34.8272, 3.00698, 13.782, -36.8272, 3.00698, 16.032, -36.5772, 3.00698, 16.532, -35.8272, 3.00698, 15.782, -36.0772, 3.00698, 15.282, -38.0772, 3.00698, 17.532, -37.8272, 3.00698, 18.032, -37.0772, 3.00698, 17.282, -37.3272, 3.00698, 16.782, -39.3272, 3.00698, 19.032, -39.0772, 3.00698, 19.532, -38.3272, 3.00698, 18.782, -38.5772, 3.00698, 18.282, -40.5772, 3.00698, 20.532, -40.5772, 3.00698, 21.032, -39.8272, 3.00698, 20.532, -40.0772, 3.00698, 20.032, -41.8272, 3.00698, 22.032, -41.8272, 3.00698, 22.532, -41.0772, 3.00698, 22.032, -41.3272, 3.00698, 21.532, -42.8272, 3.00698, 23.282, -42.8272, 3.00698, 23.782, -42.3272, 3.00698, 23.532, -42.3272, 3.00698, 23.032)
@@ -47,7 +58,7 @@ uv1_triplanar = true
 uv1_world_triplanar = true
 
 [node name="World" type="Node3D"]
-script = ExtResource("1_vvjr0")
+script = SubResource("GDScript_on0jt")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_61urj")
@@ -206,3 +217,83 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08048, 0, -7.95826)
 
 [node name="Necromancer6" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.66893, 0, -3.29189)
+
+[node name="Lights" type="Node3D" parent="."]
+
+[node name="Node3D" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.158927, 2.47557, -17.4203)
+
+[node name="Node3D2" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.46123, 2.47557, -20.7454)
+
+[node name="Node3D3" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5631, 2.47557, 2.48369)
+
+[node name="Node3D4" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1606, 2.47557, 4.32539)
+
+[node name="Node3D5" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3208, 2.47557, -4.6071)
+
+[node name="Node3D6" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1055, 2.49484, -9.33728)
+
+[node name="Node3D7" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2785, 2.49484, 1.65727)
+
+[node name="Node3D8" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2785, 2.49484, 3.6826)
+
+[node name="Node3D9" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30.2044, 2.51544, 10.8172)
+
+[node name="Node3D10" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 29.8929, 2.51544, 14.326)
+
+[node name="Node3D11" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600686, 2.51544, 19.6217)
+
+[node name="Node3D12" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77819, 2.51544, 24.5592)
+
+[node name="Node3D13" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8589, 2.51544, 20.8265)
+
+[node name="Node3D14" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8978, 2.51544, 19.3507)
+
+[node name="Node3D15" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0335, 2.51544, 19.3507)
+
+[node name="Node3D16" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.385, 1.62119, 21.8366)
+
+[node name="Node3D17" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.1109, 2.49163, -1.95626)
+
+[node name="Node3D18" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.1811, 2.49163, -5.66073)
+
+[node name="Node3D19" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4904, 2.49163, -20.4162)
+
+[node name="Node3D20" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0312, 2.49163, -26.9172)
+
+[node name="Node3D21" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0159, 2.49163, -10.9072)
+
+[node name="Node3D22" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6916, 2.49163, -11.4925)
+
+[node name="Node3D23" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.4852, 2.49163, 2.73185)
+
+[node name="Node3D24" parent="Lights" instance=ExtResource("8_xilnj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0262, 2.49163, 4.7851)
+
+[node name="FogVolume" type="Node3D" parent="."]
+
+[node name="FogVolume" type="FogVolume" parent="FogVolume"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56232, 0.275009, 0.859619)
+size = Vector3(95.9398, 0.82901, 66.9634)

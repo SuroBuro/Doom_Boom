@@ -25,7 +25,6 @@ func ready():
 
 func actor_setup():
 	await get_tree().physics_frame
-	
 	set_movement_target(player.position)
 	
 func set_movement_target(movement_target:Vector3):
@@ -39,14 +38,11 @@ func _physics_process(_delta):
 		#return
 		
 	if navigation_agent_3d.is_navigation_finished():
-		print("why?")
 		return
 	var current_position:Vector3 = global_position
 	var next_path_position:Vector3 = navigation_agent_3d.get_next_path_position()
 	
 	velocity = current_position.direction_to(next_path_position) * speed
-	print(next_path_position)
-		
 
 	move_and_slide()
 	

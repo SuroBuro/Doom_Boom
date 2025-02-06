@@ -1,8 +1,10 @@
-[gd_scene load_steps=61 format=3 uid="uid://cj2mfp7oj3tbt"]
+[gd_scene load_steps=65 format=3 uid="uid://cj2mfp7oj3tbt"]
 
 [ext_resource type="Script" path="res://Scenes/night_borne.gd" id="1_fc5fr"]
 [ext_resource type="Texture2D" uid="uid://crp5c7rn6vqa8" path="res://Sprites/NightBorne.png" id="1_hvyqt"]
 [ext_resource type="AudioStream" uid="uid://cdy7jv00wddgn" path="res://Sounds/monster-death.wav" id="3_dfmlq"]
+[ext_resource type="Texture2D" uid="uid://dbf4idfyn4luo" path="res://Textures/demon_blood.png" id="4_chks1"]
+[ext_resource type="Script" path="res://Scenes/state_machine.gd" id="5_x8120"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3xflp"]
 
@@ -419,6 +421,14 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uw37t"]
+transparency = 1
+albedo_texture = ExtResource("4_chks1")
+uv1_world_triplanar = true
+
+[sub_resource type="QuadMesh" id="QuadMesh_74n2c"]
+material = SubResource("StandardMaterial3D_uw37t")
+
 [node name="NightBorne" type="CharacterBody3D" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
@@ -448,7 +458,25 @@ one_shot = true
 stream = ExtResource("3_dfmlq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_desired_distance = 0.5
+target_desired_distance = 1.6
 path_height_offset = -0.5
+
+[node name="CPUParticles3D" type="CPUParticles3D" parent="."]
+visible = false
+emitting = false
+amount = 7
+explosiveness = 0.48
+randomness = 0.59
+mesh = SubResource("QuadMesh_74n2c")
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0.73, 0.82, 0.82)
+spread = 140.36
+initial_velocity_max = 3.0
+angular_velocity_min = -257.14
+angular_velocity_max = 77.45
+
+[node name="StateMachine" type="Node3D" parent="."]
+script = ExtResource("5_x8120")
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]

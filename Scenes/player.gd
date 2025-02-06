@@ -12,7 +12,7 @@ extends CharacterBody3D
 
 
 const SPEED:float = 10
-const SENSITIVIY = 0.2
+const SENSITIVIY = 0.08
 const BOB_AMPLITUDE:float = 0.1 
 const BOB_FREQUENCY:float = 2
 const ROTATE_HEAD:float = deg_to_rad(20)
@@ -78,8 +78,7 @@ func _physics_process(_delta):
 		bob_anim.play("Gun Bob")
 		velocity.x = direction.x * SPEED
 		velocity.z = direction.z * SPEED
-		camera.rotation_degrees.y = lerp_angle(0, ROTATE_HEAD, velocity.x * 0.4)
-		animated_sprite_2d.rotation_degrees = lerp_angle(0, ROTATE_HEAD, velocity.x *0.4)
+
 	else:
 		bob_anim.stop()
 		velocity.x = move_toward(velocity.x, 0.0, SPEED)

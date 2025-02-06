@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmiidmef7j237"]
+
+[ext_resource type="Texture2D" uid="uid://d3mox2xsbuiw3" path="res://Textures/bunker_light.png" id="1_tll1c"]
+
+[node name="Light" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1.755, 0, 0, 0, 1.755, 0, 0, 0, 1.755, 0, 0, 0)
+billboard = 2
+texture_filter = 2
+texture = ExtResource("1_tll1c")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.407202, 0)
+light_color = Color(1, 1, 0.0901961, 1)
+light_energy = 3.0
