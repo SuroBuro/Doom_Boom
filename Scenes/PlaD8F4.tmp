@@ -1,10 +1,8 @@
-[gd_scene load_steps=33 format=3 uid="uid://com035jf14m2h"]
+[gd_scene load_steps=25 format=3 uid="uid://com035jf14m2h"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_ew1dk"]
 [ext_resource type="Texture2D" uid="uid://bpvjmyqpdktyu" path="res://Sprites/Sgun.png" id="1_q70xp"]
-[ext_resource type="Texture2D" uid="uid://dkp68m6cuhis5" path="res://Sprites/PIST1.png" id="3_mv1lw"]
 [ext_resource type="AudioStream" uid="uid://cieynlji2e8xo" path="res://Sounds/shotgun.wav" id="3_wnwsw"]
-[ext_resource type="AudioStream" uid="uid://cfjon1tbmrgg1" path="res://Sounds/pistol.wav" id="5_48rby"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nupaq"]
 
@@ -133,57 +131,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lyu4f"]
-atlas = ExtResource("3_mv1lw")
-region = Rect2(0, 0, 104, 122)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1h6fv"]
-atlas = ExtResource("3_mv1lw")
-region = Rect2(104, 0, 104, 122)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_u2yof"]
-atlas = ExtResource("3_mv1lw")
-region = Rect2(0, 145, 122, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_5dfjb"]
-atlas = ExtResource("3_mv1lw")
-region = Rect2(122, 145, 122, 145)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_53pqv"]
-atlas = ExtResource("3_mv1lw")
-region = Rect2(0, 0, 105, 122)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tgr7j"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_lyu4f")
-}],
-"loop": true,
-"name": &"Idle",
-"speed": 7.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_1h6fv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_u2yof")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_5dfjb")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_53pqv")
-}],
-"loop": false,
-"name": &"Shoot",
-"speed": 7.0
-}]
-
 [sub_resource type="Animation" id="Animation_40xjd"]
 resource_name = "Gun Bob"
-length = 0.8
+length = 0.6
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -192,22 +142,10 @@ tracks/0/path = NodePath("CanvasLayer/GunBase/AnimatedSprite2D:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.366667, 0.566667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.233333, 0.533333),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(164, -103), Vector2(127, -129), Vector2(154, -115), Vector2(196, -140)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/GunBase/AnimatedSprite2D2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(-0.0333333, 0.133333, 0.333333, 0.533333),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(165, -69), Vector2(138, -89), Vector2(176, -74), Vector2(212, -93)]
+"values": [Vector2(164, -103), Vector2(101, -109), Vector2(156, -109)]
 }
 
 [sub_resource type="Animation" id="Animation_t4w03"]
@@ -223,18 +161,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(164, -103)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("CanvasLayer/GunBase/AnimatedSprite2D2:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(165, -69)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ejqdc"]
@@ -253,10 +179,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_nupaq")
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
-target_position = Vector3(0, 0, -30)
+target_position = Vector3(0, 0, -1000)
 collision_mask = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -268,31 +194,19 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -13.0
-offset_top = -10.0
-offset_right = 27.0
-offset_bottom = 30.0
+offset_left = -18.0
+offset_top = -19.0
+offset_right = 22.0
+offset_bottom = 21.0
 grow_horizontal = 2
 grow_vertical = 0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
-visible = false
 position = Vector2(164, -103)
 scale = Vector2(2.34072, 2.34072)
 sprite_frames = SubResource("SpriteFrames_i52ve")
 animation = &"Shoot"
 autoplay = "idle"
-frame = 14
-frame_progress = 1.0
-
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
-position = Vector2(165, -69)
-scale = Vector2(1.98077, 1.98077)
-sprite_frames = SubResource("SpriteFrames_tgr7j")
-animation = &"Shoot"
-autoplay = "Idle"
-frame = 3
-frame_progress = 1.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GunBase"]
 root_node = NodePath("../../..")
@@ -312,7 +226,7 @@ offset_right = 5.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0839117, 0.0839117, 0.0839117, 0.596078)
+color = Color(0.15, 0.15, 0.15, 0.219608)
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer"]
 visible = false
@@ -362,15 +276,6 @@ offset_bottom = 64.0
 text = "Restart
 "
 
-[node name="Shotgun Sound" type="AudioStreamPlayer" parent="."]
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wnwsw")
 bus = &"Sfx"
-
-[node name="Pistol Sound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_48rby")
-
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160477, 1.16612, -1.50902)
-light_color = Color(0.946, 1, 0.19, 1)
-shadow_enabled = true
-omni_range = 11.1035
