@@ -1,10 +1,13 @@
-[gd_scene load_steps=65 format=3 uid="uid://cj2mfp7oj3tbt"]
+[gd_scene load_steps=68 format=3 uid="uid://cj2mfp7oj3tbt"]
 
 [ext_resource type="Script" path="res://Scenes/night_borne.gd" id="1_fc5fr"]
 [ext_resource type="Texture2D" uid="uid://crp5c7rn6vqa8" path="res://Sprites/NightBorne.png" id="1_hvyqt"]
 [ext_resource type="AudioStream" uid="uid://cdy7jv00wddgn" path="res://Sounds/monster-death.wav" id="3_dfmlq"]
 [ext_resource type="Texture2D" uid="uid://dbf4idfyn4luo" path="res://Textures/demon_blood.png" id="4_chks1"]
 [ext_resource type="Script" path="res://Scenes/state_machine.gd" id="5_x8120"]
+[ext_resource type="Script" path="res://Scenes/Idle.gd" id="6_4rgqa"]
+[ext_resource type="Script" path="res://Chase.gd" id="7_vg10d"]
+[ext_resource type="Script" path="res://Scenes/Attack.gd" id="8_4pqli"]
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_3xflp"]
 
@@ -458,7 +461,7 @@ one_shot = true
 stream = ExtResource("3_dfmlq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_desired_distance = 1.6
+target_desired_distance = 3.0
 path_height_offset = -0.5
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
@@ -476,7 +479,30 @@ initial_velocity_max = 3.0
 angular_velocity_min = -257.14
 angular_velocity_max = 77.45
 
-[node name="StateMachine" type="Node3D" parent="."]
+[node name="StateMachine" type="Node3D" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_x8120")
+initial_state = NodePath("Attack")
+
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite_3d", "enemy")]
+script = ExtResource("6_4rgqa")
+animated_sprite_3d = NodePath("../../AnimatedSprite3D")
+enemy = NodePath("../..")
+
+[node name="Chase" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d")]
+script = ExtResource("7_vg10d")
+animated_sprite = NodePath("../../AnimatedSprite3D")
+enemy = NodePath("../..")
+navigation_agent_3d = NodePath("../../NavigationAgent3D")
+
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer")]
+script = ExtResource("8_4pqli")
+animated_sprite = NodePath("../../AnimatedSprite3D")
+enemy = NodePath("../..")
+navigation_agent_3d = NodePath("../../NavigationAgent3D")
+timer = NodePath("../../Hurt")
+
+[node name="Hurt" type="Timer" parent="."]
+wait_time = 0.2
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
+[connection signal="timeout" from="Hurt" to="StateMachine/Attack" method="_on_hurt_timeout"]

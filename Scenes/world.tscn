@@ -63,10 +63,6 @@ script = SubResource("GDScript_on0jt")
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_61urj")
 
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
-transform = Transform3D(0.929487, 0.245075, -0.275666, 1.29924e-08, 0.747358, 0.664422, 0.368855, -0.617572, 0.694659, -0.955007, 0.753751, 0)
-shadow_enabled = true
-
 [node name="Player" parent="." instance=ExtResource("1_iachg")]
 transform = Transform3D(-0.013491, 0, -0.999909, 0, 1, 0, 0.999909, 0, -0.013491, -42.0454, -0.00339884, 4.45369)
 
@@ -79,6 +75,7 @@ autoplay = true
 navigation_mesh = SubResource("NavigationMesh_46a5p")
 
 [node name="Environment" type="Node3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1.55898, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Floor" type="MeshInstance3D" parent="NavigationRegion3D/Environment"]
 transform = Transform3D(4.39544, 0, 0, 0, 1.40899, 0, 0, 0, 3.06657, -0.10857, 0.0434306, 0.0973697)
@@ -200,8 +197,53 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.37003, 1.10387, 4.17807)
 [node name="NightBorne" parent="Enemies" instance=ExtResource("3_nooyx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.53607, -0.291157, -13.266)
 
+[node name="NightBorne2" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4385, -0.291157, -13.266)
+
+[node name="NightBorne3" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4385, -0.291157, -7.34202)
+
+[node name="NightBorne5" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9061, -0.291157, 3.36625)
+
+[node name="NightBorne7" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9061, -0.291157, 5.56756)
+
+[node name="NightBorne6" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0069, -0.291157, -22.0087)
+
+[node name="NightBorne4" parent="Enemies" instance=ExtResource("3_nooyx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5397, -0.291157, -7.34202)
+
 [node name="Necromancer" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.41, 0, 8.25047)
+
+[node name="Necromancer7" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83209, 0, 8.25047)
+
+[node name="Necromancer12" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9642, 0, 8.25047)
+
+[node name="Necromancer13" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9642, 0, -11.8016)
+
+[node name="Necromancer14" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.572, 0, -11.8016)
+
+[node name="Necromancer15" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.572, 0, -28.3946)
+
+[node name="Necromancer8" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83209, 0, 15.8248)
+
+[node name="Necromancer9" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1012, 0, 15.8248)
+
+[node name="Necromancer10" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7088, 0, -24.776)
+
+[node name="Necromancer11" parent="Enemies" instance=ExtResource("3_l5i4f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19305, 0, -28.4212)
 
 [node name="Necromancer2" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6932, 0, 5.31698)
@@ -236,7 +278,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.1606, 2.47557, 4.32539)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.3208, 2.47557, -4.6071)
 
 [node name="Node3D6" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1055, 2.49484, -9.33728)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 21.1055, 2.49484, -9.83524)
 
 [node name="Node3D7" parent="Lights" instance=ExtResource("8_xilnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 41.2785, 2.49484, 1.65727)
@@ -257,31 +299,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.600686, 2.51544, 19.6217)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.77819, 2.51544, 24.5592)
 
 [node name="Node3D13" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.8589, 2.51544, 20.8265)
+transform = Transform3D(0.529253, 0, 0.848464, 0, 1, 0, -0.848464, 0, 0.529253, -16.3539, 2.51544, 20.5023)
 
 [node name="Node3D14" parent="Lights" instance=ExtResource("8_xilnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.8978, 2.51544, 19.3507)
 
 [node name="Node3D15" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.0335, 2.51544, 19.3507)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37.6444, 2.51544, 18.7199)
 
 [node name="Node3D16" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.385, 1.62119, 21.8366)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -42.6299, 2.24012, 21.7484)
 
 [node name="Node3D17" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -39.1109, 2.49163, -1.95626)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.2983, 2.49163, -2.49616)
 
 [node name="Node3D18" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.1811, 2.49163, -5.66073)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34.7761, 2.49163, -5.66073)
 
 [node name="Node3D19" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4904, 2.49163, -20.4162)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.4904, 2.49163, -17.503)
 
 [node name="Node3D20" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.0312, 2.49163, -26.9172)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.8458, 2.49163, -27.5391)
 
 [node name="Node3D21" parent="Lights" instance=ExtResource("8_xilnj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.0159, 2.49163, -10.9072)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.4022, 2.49163, -10.5505)
 
 [node name="Node3D22" parent="Lights" instance=ExtResource("8_xilnj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.6916, 2.49163, -11.4925)
@@ -295,5 +337,5 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0262, 2.49163, 4.7851)
 [node name="FogVolume" type="Node3D" parent="."]
 
 [node name="FogVolume" type="FogVolume" parent="FogVolume"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56232, 0.275009, 0.859619)
-size = Vector3(95.9398, 0.82901, 66.9634)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56232, 0.182014, 0.859619)
+size = Vector3(95.9398, 0.643021, 66.9634)

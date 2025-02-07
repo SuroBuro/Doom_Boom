@@ -1,4 +1,7 @@
 extends CharacterBody3D
+class_name necromancer
+
+var eye = preload("res://Scenes/eye.tscn")
 
 @onready var animated_sprite_3d: AnimatedSprite3D = $AnimatedSprite3D
 @onready var death: Timer = $Death
@@ -18,9 +21,6 @@ var dead:bool = false
 func ready():
 	animated_sprite_3d.play("Idle")
 	
-	navigation_agent_3d.path_desired_distance = 0.5
-	navigation_agent_3d.target_desired_distance = 0.5
-	
 	actor_setup.call_deferred()
 
 func actor_setup():
@@ -34,9 +34,6 @@ func _physics_process(_delta):
 	
 	if dead:
 		return
-	#if player == null:
-		#return
-		
 	if navigation_agent_3d.is_navigation_finished():
 		return
 	var current_position:Vector3 = global_position
@@ -51,13 +48,14 @@ func update_target_location(target):
 	navigation_agent_3d.target_position = target
 	
 
-func damage(weapon_damage):
+func damage(weapon_damage) -> bool:
 	health -= weapon_damage
 	if health <= 0:
 		kill()
-	else:
+	elif health > 0 :
 		animated_sprite_3d.play("Hurt")
-		
+	
+	return true
 	
 func kill():
 	dead = true

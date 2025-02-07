@@ -7,7 +7,8 @@ extends CharacterBody3D
 @onready var bob_anim:AnimationPlayer = $CanvasLayer/GunBase/AnimationPlayer
 @onready var camera:Camera3D = $Camera3D
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $CanvasLayer/GunBase/AnimatedSprite2D2
-@onready var omni_light_3d: OmniLight3D = $OmniLight3D
+@onready var omni_light_3d: SpotLight3D = $OmniLight3D
+@onready var hurt_screen: ColorRect = $CanvasLayer/HurtScreen
 
 
 
@@ -18,8 +19,9 @@ const BOB_FREQUENCY:float = 2
 const ROTATE_HEAD:float = deg_to_rad(20)
 
 var shotgun_damage:float = 50
-var shotgun_shells:int = 10
+var shotgun_shells:int = 50
 var pistol_damage:float = 15
+var player_health:float = 100
 var pistol_active:bool = true
 var can_shoot:bool = true
 var dead:bool = false
@@ -63,10 +65,6 @@ func _process(_delta):
 	elif Input.is_action_just_pressed(&"Pistol"):
 		pistol_active = true
 		set_weapon(pistol_active)
-	
-	
-		
-	#animated_sprite_2d.position.y = sin(  * 0.3) 
 
 func _physics_process(_delta):
 	if dead:
@@ -105,16 +103,27 @@ func shoot():
 		damager(shotgun_damage)
 		shotgun_shells -= 2
 	
+	await get_tree().create_timer(0.1).timeout
+	omni_light_3d.hide() 
+	
 	
 	
 func shoot_anim_done():
 	can_shoot = true
-	omni_light_3d.hide()
+	
 
 func kill():
-	dead = true
-	$CanvasLayer/DeathScreen.show()
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if dead:
+		return
+	
+	player_health -= 1
+	hurt_screen.show()
+	await get_tree().create_timer(0.05).timeout
+	hurt_screen.hide()
+	if player_health <= 0:
+		dead = true
+		$CanvasLayer/DeathScreen.show()
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func damager(damage):
 	if ray_cast_3d.is_colliding() and ray_cast_3d.get_collider().has_method("damage"):

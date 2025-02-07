@@ -8,7 +8,7 @@ extends CharacterBody3D
 @export var accel = 3.0
 @export var speed = 5.0
 @export var attack_range:float = 10.0
-@export var health:float = 120
+@export var health:float = 90
 
 
 @onready var player:CharacterBody3D = get_tree().get_first_node_in_group("player")
@@ -18,9 +18,6 @@ var in_range:bool = false
 
 func ready():
 	animated_sprite_3d.play("Idle")
-	
-	navigation_agent_3d.path_desired_distance = 0.5
-	navigation_agent_3d.target_desired_distance = 0.5
 	
 	actor_setup.call_deferred()
 

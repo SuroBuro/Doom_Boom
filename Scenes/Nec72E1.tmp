@@ -317,16 +317,13 @@ animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d")]
 script = ExtResource("7_eqj1l")
 animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
-timer = NodePath("../../Hurt")
 
 [node name="Hurt" type="Timer" parent="."]
-wait_time = 0.5
-one_shot = true
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
 [connection signal="timeout" from="Hurt" to="StateMachine/Attack" method="_on_hurt_timeout"]

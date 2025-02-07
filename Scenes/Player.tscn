@@ -243,7 +243,7 @@ _data = {
 "RESET": SubResource("Animation_t4w03")
 }
 
-[node name="Player" type="CharacterBody3D"]
+[node name="Player" type="CharacterBody3D" groups=["Player"]]
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("1_ew1dk")
@@ -362,6 +362,15 @@ offset_bottom = 64.0
 text = "Restart
 "
 
+[node name="HurtScreen" type="ColorRect" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 0, 0, 0.247059)
+
 [node name="Shotgun Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wnwsw")
 bus = &"Sfx"
@@ -369,9 +378,12 @@ bus = &"Sfx"
 [node name="Pistol Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_48rby")
 
-[node name="OmniLight3D" type="OmniLight3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160477, 1.16612, -1.50902)
+[node name="OmniLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160477, 1.16612, 0.32263)
 visible = false
 light_color = Color(0.945098, 0.623529, 0.188235, 1)
 shadow_enabled = true
-omni_range = 11.1035
+spot_range = 11.9519
+spot_angle = 63.5109
+
+[node name="Hurt sound" type="AudioStreamPlayer" parent="."]

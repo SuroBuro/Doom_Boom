@@ -24,6 +24,11 @@ window/stretch/mode="canvas_items"
 
 project/assembly_name="Doom Boom"
 
+[global_group]
+
+Enemies=""
+Player=""
+
 [input]
 
 move_front={
