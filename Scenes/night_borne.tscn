@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cj2mfp7oj3tbt"]
+[gd_scene load_steps=69 format=3 uid="uid://cj2mfp7oj3tbt"]
 
 [ext_resource type="Script" path="res://Scenes/night_borne.gd" id="1_fc5fr"]
 [ext_resource type="Texture2D" uid="uid://crp5c7rn6vqa8" path="res://Sprites/NightBorne.png" id="1_hvyqt"]
@@ -432,10 +432,13 @@ uv1_world_triplanar = true
 [sub_resource type="QuadMesh" id="QuadMesh_74n2c"]
 material = SubResource("StandardMaterial3D_uw37t")
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_f0pj3"]
+radius = 1.6
+
 [node name="NightBorne" type="CharacterBody3D" groups=["Enemies"]]
 transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_fc5fr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -461,7 +464,7 @@ one_shot = true
 stream = ExtResource("3_dfmlq")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-target_desired_distance = 3.0
+target_desired_distance = 1.8
 path_height_offset = -0.5
 
 [node name="CPUParticles3D" type="CPUParticles3D" parent="."]
@@ -494,15 +497,23 @@ animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer", "area3d")]
 script = ExtResource("8_4pqli")
 animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
 timer = NodePath("../../Hurt")
+area3d = NodePath("../../Area3D")
 
 [node name="Hurt" type="Timer" parent="."]
-wait_time = 0.2
+wait_time = 5.0
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 5
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_f0pj3")
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
 [connection signal="timeout" from="Hurt" to="StateMachine/Attack" method="_on_hurt_timeout"]

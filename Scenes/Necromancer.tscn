@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://dohv2w88d0h8"]
+[gd_scene load_steps=45 format=3 uid="uid://dohv2w88d0h8"]
 
 [ext_resource type="Texture2D" uid="uid://b7q445v20gabw" path="res://Sprites/Necromancer_creativekind-Sheet.png" id="1_dc6ii"]
 [ext_resource type="Script" path="res://Scenes/necromancer.gd" id="1_gyypc"]
@@ -271,9 +271,12 @@ animations = [{
 "speed": 7.0
 }]
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cm312"]
+radius = 2.95215
+
 [node name="Necromancer" type="CharacterBody3D" groups=["Enemies"]]
 collision_layer = 2
-collision_mask = 3
+collision_mask = 7
 script = ExtResource("1_gyypc")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -285,9 +288,9 @@ pixel_size = 0.03
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_650x2")
-animation = &"Attack"
+animation = &"Hurt"
 autoplay = "Idle"
-frame = 12
+frame = 4
 frame_progress = 1.0
 
 [node name="Death" type="Timer" parent="."]
@@ -317,16 +320,22 @@ animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
 
-[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer")]
+[node name="Attack" type="Node" parent="StateMachine" node_paths=PackedStringArray("animated_sprite", "enemy", "navigation_agent_3d", "timer", "area3d")]
 script = ExtResource("7_eqj1l")
 animated_sprite = NodePath("../../AnimatedSprite3D")
 enemy = NodePath("../..")
 navigation_agent_3d = NodePath("../../NavigationAgent3D")
 timer = NodePath("../../Hurt")
+area3d = NodePath("../../Area3D")
 
 [node name="Hurt" type="Timer" parent="."]
-wait_time = 0.5
+wait_time = 5.0
 one_shot = true
+
+[node name="Area3D" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("CylinderShape3D_cm312")
 
 [connection signal="timeout" from="Death" to="." method="_on_death_timeout"]
 [connection signal="timeout" from="Hurt" to="StateMachine/Attack" method="_on_hurt_timeout"]

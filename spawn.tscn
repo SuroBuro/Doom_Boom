@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dh45nps6diuf8"]
+
+[ext_resource type="Script" path="res://Scenes/spawn.gd" id="1_8cbeq"]
+
+[node name="spawn" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.00204492)
+script = ExtResource("1_8cbeq")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

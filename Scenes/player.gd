@@ -1,4 +1,5 @@
 extends CharacterBody3D
+class_name Player
 
 @onready var animated_sprite_2d: AnimatedSprite2D = $CanvasLayer/GunBase/AnimatedSprite2D
 @onready var ray_cast_3d: RayCast3D = $Camera3D/RayCast3D
@@ -9,6 +10,8 @@ extends CharacterBody3D
 @onready var animated_sprite_2d_2: AnimatedSprite2D = $CanvasLayer/GunBase/AnimatedSprite2D2
 @onready var omni_light_3d: SpotLight3D = $OmniLight3D
 @onready var hurt_screen: ColorRect = $CanvasLayer/HurtScreen
+@onready var label_2: Label = $CanvasLayer/Control/Label2
+@onready var label: Label = $CanvasLayer/Control/Label
 
 
 
@@ -19,9 +22,9 @@ const BOB_FREQUENCY:float = 2
 const ROTATE_HEAD:float = deg_to_rad(20)
 
 var shotgun_damage:float = 50
-var shotgun_shells:int = 50
+var shotgun_shells:int = 500
 var pistol_damage:float = 15
-var player_health:float = 100
+var player_health:float = 120
 var pistol_active:bool = true
 var can_shoot:bool = true
 var dead:bool = false
@@ -41,6 +44,10 @@ func _input(event: InputEvent):
 		rotation_degrees.y -= event.relative.x * SENSITIVIY
 	
 func _process(_delta):
+	
+	label_2.text = "Player health: " + str(player_health)
+	label.text = "Shotgun Shells " + str(shotgun_shells)
+	
 	if Input.is_action_pressed("exit"):
 		get_tree().quit()
 	if Input.is_action_just_pressed("restart"):
@@ -48,7 +55,7 @@ func _process(_delta):
 		
 	if dead:
 		return
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_pressed("shoot"):
 		shoot()
 		
 	if Input.is_action_just_pressed(&"Shotgun") and  shotgun_shells > 0:
@@ -118,7 +125,7 @@ func kill():
 	
 	player_health -= 1
 	hurt_screen.show()
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(1).timeout
 	hurt_screen.hide()
 	if player_health <= 0:
 		dead = true

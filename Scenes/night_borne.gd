@@ -55,18 +55,7 @@ func try_to_kill(distance):
 		in_range = false
 	else:
 		in_range = true
-	#
-#func try_to_kill():
-	#var dist_to_player = global_position.distance_to(player.global_position)
-	#if dist_to_player > attack_range:
-		#return
-	#
-	#var eye_line = Vector3.UP * 1.5
-	#var query = PhysicsRayQueryParameters3D.create(global_position+eye_line, player.global_position+eye_line,1)
-	#var result = get_world_3d().direct_space_state.intersect_ray(query)
-	#if result.is_empty():
-		#player.kill()
-		#
+
 
 func damage(weapon_damage):
 	health -= weapon_damage
@@ -74,6 +63,8 @@ func damage(weapon_damage):
 		kill()
 	else:
 		animated_sprite_3d.play("Hurt")
+		await get_tree().create_timer(0.5).timeout
+		animated_sprite_3d.play("Idle")
 	
 		
 
@@ -84,8 +75,6 @@ func kill():
 	death.start()
 	audio_stream_player_3d.play()
 	
-	
-
 
 func _on_death_timeout() -> void:
 	queue_free()

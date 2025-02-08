@@ -5,6 +5,7 @@ class_name Attack
 @export var enemy:CharacterBody3D
 @export var navigation_agent_3d:NavigationAgent3D 
 @export var timer:Timer 
+@export var area3d:Area3D
 
 var player
 var has_attacked:bool = false
@@ -19,8 +20,19 @@ func Physics_Update(_delta: float):
 		timer.start()
 		has_attacked = true
 		
+		
+		#
+#func _on_area_3d_body_entered(body: Node3D) -> void:
+	#print("Kuch toh huya")
+	#if body:
+		#print("Wow,nice")
+		#
 
-
+#func attack():
+	#animated_sprite.play("Attack")
+	#timer.start()
+	#has_attacked = true
+	
 
 func _on_hurt_timeout() -> void:
 	if player:

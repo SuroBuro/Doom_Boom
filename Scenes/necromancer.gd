@@ -11,7 +11,7 @@ var eye = preload("res://Scenes/eye.tscn")
 @export var speed:float = 3
 @export var accel:float = 10
 @export var attack_range:float = 1.0
-@export var health:float = 60
+@export var health:float = 40
 
 @onready var player:CharacterBody3D = get_tree().get_first_node_in_group("Player")
 var dead:bool = false
@@ -54,6 +54,8 @@ func damage(weapon_damage) -> bool:
 		kill()
 	elif health > 0 :
 		animated_sprite_3d.play("Hurt")
+		await get_tree().create_timer(0.5).timeout
+		animated_sprite_3d.play("Idle")
 	
 	return true
 	

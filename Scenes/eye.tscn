@@ -344,4 +344,4 @@ billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_ibw4q")
 animation = &"Dead"
-frame_progress = 0.470839
+frame_progress = 0.733913

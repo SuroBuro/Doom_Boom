@@ -1,11 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkiy8a4i6hsym"]
+[gd_scene load_steps=8 format=3 uid="uid://bkiy8a4i6hsym"]
 
-[ext_resource type="Script" path="res://character_body_3d.gd" id="1_3doe1"]
 [ext_resource type="Texture2D" uid="uid://gfnbio88ta04" path="res://Textures/bunker_floor.png" id="1_oj2nl"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_mbc11"]
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1vdxn"]
+[ext_resource type="PackedScene" uid="uid://cj2mfp7oj3tbt" path="res://Scenes/night_borne.tscn" id="2_h57hl"]
+[ext_resource type="PackedScene" uid="uid://com035jf14m2h" path="res://Scenes/Player.tscn" id="3_c5vp8"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_gd6gh"]
 vertices = PackedVector3Array(-9.84055, 0.409166, 0.244873, -3.84055, 0.409166, 0.244873, -3.59055, 0.409166, -1.00513, 1.65945, 0.409166, -1.00513, 1.65945, 0.409166, -6.50513, -9.84055, 0.409166, -6.50513, 3.65945, 0.409166, -1.00513, 3.90945, 0.409166, 0.244873, 9.90945, 0.409166, 0.244873, 9.90945, 0.409166, -6.50513, -3.59055, 0.409166, 1.24487, 1.65945, 0.409166, 8.74487, 1.65945, 0.409166, 1.24487, -9.84055, 0.409166, 8.74487, 3.65945, 0.409166, 1.24487, 9.90945, 0.409166, 8.74487)
@@ -22,20 +19,8 @@ uv1_world_triplanar = true
 
 [node name="Node3D" type="Node3D"]
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.853736, 5.46443)
-script = ExtResource("1_3doe1")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="CharacterBody3D"]
-mesh = SubResource("CapsuleMesh_mbc11")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-shape = SubResource("CapsuleShape3D_1vdxn")
-
-[node name="NavigationAgent3D" type="NavigationAgent3D" parent="CharacterBody3D"]
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(0.0707897, -0.831121, 0.551567, 0.0162416, 0.553842, 0.832464, -0.997359, -0.0499715, 0.052705, 5.30789, 5.40736, 0.140877)
+[node name="Player" parent="." instance=ExtResource("3_c5vp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.01354, 0.117749, 3.92172)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_gd6gh")
@@ -61,3 +46,6 @@ skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D"]
 shape = SubResource("BoxShape3D_nerf0")
+
+[node name="NightBorne" parent="." instance=ExtResource("2_h57hl")]
+transform = Transform3D(1, 0, 0, 0, 1.2, 0, 0, 0, 1, 0, 1.02417, 4.51788)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=33 format=3 uid="uid://com035jf14m2h"]
+[gd_scene load_steps=34 format=3 uid="uid://com035jf14m2h"]
 
 [ext_resource type="Script" path="res://Scenes/player.gd" id="1_ew1dk"]
 [ext_resource type="Texture2D" uid="uid://bpvjmyqpdktyu" path="res://Sprites/Sgun.png" id="1_q70xp"]
 [ext_resource type="Texture2D" uid="uid://dkp68m6cuhis5" path="res://Sprites/PIST1.png" id="3_mv1lw"]
 [ext_resource type="AudioStream" uid="uid://cieynlji2e8xo" path="res://Sounds/shotgun.wav" id="3_wnwsw"]
+[ext_resource type="Theme" uid="uid://kwrioskx0oa1" path="res://GameTheme.tres" id="4_4svio"]
 [ext_resource type="AudioStream" uid="uid://cfjon1tbmrgg1" path="res://Sounds/pistol.wav" id="5_48rby"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nupaq"]
@@ -244,7 +245,7 @@ _data = {
 }
 
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
-collision_layer = 2
+collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_ew1dk")
 
@@ -284,6 +285,7 @@ animation = &"Shoot"
 autoplay = "idle"
 frame = 14
 frame_progress = 1.0
+speed_scale = 1.5
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="CanvasLayer/GunBase"]
 position = Vector2(165, -69)
@@ -291,8 +293,7 @@ scale = Vector2(1.98077, 1.98077)
 sprite_frames = SubResource("SpriteFrames_tgr7j")
 animation = &"Shoot"
 autoplay = "Idle"
-frame = 3
-frame_progress = 1.0
+speed_scale = 5.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/GunBase"]
 root_node = NodePath("../../..")
@@ -312,7 +313,7 @@ offset_right = 5.0
 offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0839117, 0.0839117, 0.0839117, 0.596078)
+color = Color(0.62, 0.2728, 0.2728, 0.596078)
 
 [node name="DeathScreen" type="Control" parent="CanvasLayer"]
 visible = false
@@ -369,7 +370,34 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(1, 0, 0, 0.247059)
+color = Color(1, 0.491004, 0.423705, 0.247059)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -144.0
+offset_top = 2.0
+offset_right = -26.0
+offset_bottom = 25.0
+grow_horizontal = 0
+theme = ExtResource("4_4svio")
+text = "Necromancer : "
+
+[node name="Label2" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 23.0
+theme = ExtResource("4_4svio")
 
 [node name="Shotgun Sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wnwsw")
@@ -382,6 +410,7 @@ stream = ExtResource("5_48rby")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0160477, 1.16612, 0.32263)
 visible = false
 light_color = Color(0.945098, 0.623529, 0.188235, 1)
+light_energy = 4.0
 shadow_enabled = true
 spot_range = 11.9519
 spot_angle = 63.5109

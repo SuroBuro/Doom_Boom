@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://dm8gib8aic3mo"]
+[gd_scene load_steps=23 format=3 uid="uid://dm8gib8aic3mo"]
 
+[ext_resource type="Texture2D" path="res://vz_apocalypse_land_cubemap_ue.dds" id="1_feq8c"]
 [ext_resource type="PackedScene" uid="uid://com035jf14m2h" path="res://Scenes/Player.tscn" id="1_iachg"]
 [ext_resource type="Texture2D" uid="uid://gfnbio88ta04" path="res://Textures/bunker_floor.png" id="1_wxbrg"]
 [ext_resource type="Material" uid="uid://c6ndyx6vihjqq" path="res://Scenes/wall.tres" id="2_pf73d"]
@@ -8,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://chjpv5bpsxqi6" path="res://Textures/bunker_wall.png" id="4_ki3ak"]
 [ext_resource type="AudioStream" uid="uid://k25f0fexoe8v" path="res://Sounds/Zander Noriega - Fight Them Until We Cant.wav" id="4_u3b3u"]
 [ext_resource type="PackedScene" uid="uid://dmiidmef7j237" path="res://Scenes/Light.tscn" id="8_xilnj"]
+[ext_resource type="PackedScene" uid="uid://dh45nps6diuf8" path="res://spawn.tscn" id="9_g3m2f"]
 
 [sub_resource type="GDScript" id="GDScript_on0jt"]
 script/source = "extends Node3D
@@ -19,9 +21,18 @@ func _physics_process(_delta: float):
 	pass
 "
 
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_kufkc"]
+panorama = ExtResource("1_feq8c")
+filter = false
+energy_multiplier = 2.0
+
+[sub_resource type="Sky" id="Sky_a5cuc"]
+sky_material = SubResource("PanoramaSkyMaterial_kufkc")
+
 [sub_resource type="Environment" id="Environment_61urj"]
-background_mode = 1
+background_mode = 2
 background_color = Color(0.229593, 0.229593, 0.229593, 1)
+sky = SubResource("Sky_a5cuc")
 volumetric_fog_enabled = true
 volumetric_fog_density = 0.15
 volumetric_fog_albedo = Color(0.599346, 0.265257, 0.0533502, 1)
@@ -206,32 +217,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.4385, -0.291157, -7.34202)
 [node name="NightBorne5" parent="Enemies" instance=ExtResource("3_nooyx")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9061, -0.291157, 3.36625)
 
-[node name="NightBorne7" parent="Enemies" instance=ExtResource("3_nooyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40.9061, -0.291157, 5.56756)
-
-[node name="NightBorne6" parent="Enemies" instance=ExtResource("3_nooyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.0069, -0.291157, -22.0087)
-
-[node name="NightBorne4" parent="Enemies" instance=ExtResource("3_nooyx")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.5397, -0.291157, -7.34202)
-
-[node name="Necromancer" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22.41, 0, 8.25047)
-
 [node name="Necromancer7" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83209, 0, 8.25047)
-
-[node name="Necromancer12" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9642, 0, 8.25047)
-
-[node name="Necromancer13" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.9642, 0, -11.8016)
-
-[node name="Necromancer14" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.572, 0, -11.8016)
-
-[node name="Necromancer15" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.572, 0, -28.3946)
 
 [node name="Necromancer8" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.83209, 0, 15.8248)
@@ -241,15 +228,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.1012, 0, 15.8248)
 
 [node name="Necromancer10" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.7088, 0, -24.776)
-
-[node name="Necromancer11" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.19305, 0, -28.4212)
-
-[node name="Necromancer2" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.6932, 0, 5.31698)
-
-[node name="Necromancer3" parent="Enemies" instance=ExtResource("3_l5i4f")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.75959, 0, 2.66445)
 
 [node name="Necromancer4" parent="Enemies" instance=ExtResource("3_l5i4f")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.0854, 0, -6.92827)
@@ -339,3 +317,23 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.0262, 2.49163, 4.7851)
 [node name="FogVolume" type="FogVolume" parent="FogVolume"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.56232, 0.182014, 0.859619)
 size = Vector3(95.9398, 0.643021, 66.9634)
+
+[node name="spawn" parent="." instance=ExtResource("9_g3m2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90264, -2.44919)
+enemy = ExtResource("3_l5i4f")
+
+[node name="spawn2" parent="." instance=ExtResource("9_g3m2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.90264, -23.2744)
+enemy = ExtResource("3_nooyx")
+
+[node name="spawn3" parent="." instance=ExtResource("9_g3m2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7455, 0.90264, -23.2744)
+enemy = ExtResource("3_nooyx")
+
+[node name="spawn4" parent="." instance=ExtResource("9_g3m2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.7455, 0.90264, 14.5652)
+enemy = ExtResource("3_l5i4f")
+
+[node name="spawn5" parent="." instance=ExtResource("9_g3m2f")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.412, 0.90264, 14.5652)
+enemy = ExtResource("3_l5i4f")

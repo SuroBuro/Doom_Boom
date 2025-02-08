@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://kwrioskx0oa1"]
+
+[ext_resource type="FontFile" uid="uid://dnkyf4sfay8u4" path="res://Sprites/yoster.ttf" id="1_qycio"]
+
+[resource]
+default_font = ExtResource("1_qycio")
